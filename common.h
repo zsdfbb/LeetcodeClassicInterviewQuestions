@@ -1,7 +1,12 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include "stdio.h"
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
+#include <memory.h>
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
