@@ -2,49 +2,26 @@
 #include "stdlib.h"
 #include "../common.h"
 
-int cal_area(int* height, int left, int right)
-{
-    int h1 = height[left];
-    int h2 = height[right];
-    int min_h = MIN(h1, h2);
-    return min_h * (right - left);
-}
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
 
 int maxArea(int* height, int heightSize)
 {
     int left = 0;
     int right = heightSize - 1;
+    int min_i = 0;
     int max = 0;
 
     while (left < right) {
-        printf("left: %d, right: %d\n", left, right);
-        // 1）当前面积
-        max = MAX(max, cal_area(height, left, right));
-
-        // 2）移动left， 计算面积
-        int li = left + 1;
-        while (li < right && height[li] <= height[left]) {
-            li++;
+        // printf("left: %d, right: %d\n", left, right);
+        int hl = height[left];
+        int hr = height[right];
+        if (hl < hr) {
+            max = MAX(max, hl * (right - left));
+            left++;
+        } else {
+            max = MAX(max, hr * (right - left));
+            right--;
         }
-        if (li < right)
-            max = MAX(max, cal_area(height, li, right));
-
-        // 3）移动right, 计算面积
-        int ri = right - 1;
-        while (ri > left && height[ri] <= height[right]) {
-            ri--;
-        }
-        if (ri > left)
-            max= MAX(max, cal_area(height, left, ri));
-
-        // 4）移动right 和 left，计算面积
-        if (li < right && ri > left) {
-            max = MAX(max, cal_area(height, li, ri));
-        }
-        
-
-        left = li;
-        right = ri;
     }
 
     return max;
@@ -66,6 +43,12 @@ int main()
     // 输出：1
     int h2[] = {1,1};
     printf("%d\n", maxArea(h2, ARRAY_SIZE(h2)));
+
+    // 示例 2：
+    // 输入：height = [8,7,6,5]
+    // 输出：7
+    int h3[] = {8,7,2,1};
+    printf("%d\n", maxArea(h3, ARRAY_SIZE(h3)));
 
     return 0;
 }
