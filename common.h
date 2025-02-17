@@ -16,6 +16,10 @@ void swap(int *a, int *b)
 
 void debug_info(int *n, int size)
 {
+    printf("debug_info:\n");
+    if (n == NULL) {
+        return;
+    }
     for (int i = 0; i<size; i++) {
         printf("%d ", n[i]);
     }
