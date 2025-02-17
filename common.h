@@ -22,4 +22,13 @@ void debug_info(int *n, int size)
     printf("\n");
 }
 
+void debug_str_info(char** s, int size)
+{
+    printf("debug_str_info:\n");
+    for (int i = 0; i<size; i++) {
+        printf("%s\n", s[i]);
+    }
+    printf("\n");
+}
+
 #endif
