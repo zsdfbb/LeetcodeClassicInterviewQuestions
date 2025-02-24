@@ -18,18 +18,34 @@ struct ListNode {
     struct ListNode *next;
 };
 
-struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
-    struct ListNode *nn = NULL;
-    struct ListNode *n1 = list1;
-    struct ListNode *n2 = list2;
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2)
+{
+    struct ListNode *l1 = list1;
+    struct ListNode *l2 = list2;
 
-    while (n1 != NULL && n2 != NULL) {
-        if (n1->val > n2->val) {
-            
+    struct ListNode head = {0};
+    struct ListNode * tmp = &head;
+
+    while (l1!= NULL && l2 != NULL) {
+        if (l1->val < l2->val) {
+            tmp->next = l1;
+            l1 = l1->next;
+        } else {
+            tmp->next = l2;
+            l2 = l2->next;
         }
-        struct ListNode *nmax = ( ? )
-        if (nn == NULL) {}
+        tmp = tmp->next;
     }
+
+    if (l1 != NULL) {
+        tmp->next = l1;
+    }
+
+    if (l2 != NULL) {
+        tmp->next = l2;
+    }
+
+    return head.next;
 }
 
 int main()
